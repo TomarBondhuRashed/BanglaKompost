@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - BanglaKompost</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-seedling"></i>
+                <span>BanglaKompost</span>
+                <span class="admin-badge">Admin Panel</span>
+            </div>
+            <div class="nav-profile">
+                <span id="adminName">Admin</span>
+                <button id="logoutBtn" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul class="menu">
+            <li><a href="#dashboard" class="menu-link active" data-page="dashboard">
+                <i class="fas fa-chart-pie"></i> Dashboard
+            </a></li>
+            <li><a href="#pickups" class="menu-link" data-page="pickups">
+                <i class="fas fa-list"></i> Pickup Requests
+            </a></li>
+            <li><a href="#collection" class="menu-link" data-page="collection">
+                <i class="fas fa-truck"></i> Waste Collection
+            </a></li>
+            <li><a href="#composting" class="menu-link" data-page="composting">
+                <i class="fas fa-industry"></i> Composting
+            </a></li>
+            <li><a href="#analytics" class="menu-link" data-page="analytics">
+                <i class="fas fa-chart-bar"></i> Analytics
+            </a></li>
+            <li><a href="#customers" class="menu-link" data-page="customers">
+                <i class="fas fa-users"></i> Customers
+            </a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Dashboard Page -->
+        <div id="dashboard" class="page active">
+            <h1>Dashboard</h1>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <h3>Total Customers</h3>
+                        <p class="stat-value"><span id="totalCustomers">0</span></p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-truck"></i>
+                    <div>
+                        <h3>Today's Pickups</h3>
+                        <p class="stat-value"><span id="todayPickups">0</span></p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-recycle"></i>
+                    <div>
+                        <h3>Waste Collected Today</h3>
+                        <p class="stat-value"><span id="todayWaste">0</span> kg</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <div>
+                        <h3>Today's Revenue</h3>
+                        <p class="stat-value">৳ <span id="todayRevenue">0</span></p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h3>Pending Pickups</h3>
+                        <p class="stat-value"><span id="pendingPickups">0</span></p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <h3>Overall Pickups</h3>
+                        <p class="stat-value"><span id="totalPickups">0</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-row">
+                <div class="section">
+                    <h2>Pending Pickups</h2>
+                    <div id="pendingPickupsList" class="pickups-table">
+                        <p class="no-data">Loading...</p>
+                    </div>
+                </div>
+                <div class="section">
+                    <h2>Overview</h2>
+                    <div class="overview-stats">
+                        <div>
+                            <h4>Total Waste Collected</h4>
+                            <p><span id="overallWaste">0</span> kg</p>
+                        </div>
+                        <div>
+                            <h4>Total Revenue</h4>
+                            <p>৳ <span id="overallRevenue">0</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pickups Page -->
+        <div id="pickups" class="page">
+            <h1>Pickup Requests Management</h1>
+            
+            <div class="filter-bar">
+                <select id="pickupStatusFilter">
+                    <option value="">All Statuses</option>
+                    <option value="requested">Requested</option>
+                    <option value="scheduled">Scheduled</option>
+                    <option value="collected">Collected</option>
+                    <option value="completed">Completed</option>
+                </select>
+                <select id="wasteTypeFilter">
+                    <option value="">All Waste Types</option>
+                    <option value="kitchen">Kitchen</option>
+                    <option value="market">Market</option>
+                    <option value="garden">Garden</option>
+                    <option value="mixed">Mixed</option>
+                </select>
+            </div>
+
+            <div id="pickupsList" class="data-table">
+                <p class="no-data">Loading...</p>
+            </div>
+        </div>
+
+        <!-- Collection Page -->
+        <div id="collection" class="page">
+            <h1>Waste Collection Log</h1>
+            
+            <div class="date-range">
+                <input type="date" id="startDate">
+                <input type="date" id="endDate">
+                <button id="filterBtn" class="btn-secondary">Filter</button>
+            </div>
+
+            <div id="collectionStats" class="stats-grid">
+                <div class="stat-card">
+                    <h3>Collections Today</h3>
+                    <p class="stat-value"><span id="collectionsToday">0</span></p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Weight</h3>
+                    <p class="stat-value"><span id="totalWeightToday">0</span> kg</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Sorted Waste</h3>
+                    <p class="stat-value"><span id="sortedWasteToday">0</span> kg</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Unsorted Waste</h3>
+                    <p class="stat-value"><span id="unsortedWasteToday">0</span> kg</p>
+                </div>
+            </div>
+
+            <h2>Collection Statistics</h2>
+            <div id="collectionTable" class="data-table">
+                <p class="no-data">Loading...</p>
+            </div>
+        </div>
+
+        <!-- Composting Page -->
+        <div id="composting" class="page">
+            <h1>Composting Process</h1>
+            
+            <div id="compostingTable" class="data-table">
+                <p class="no-data">Loading...</p>
+            </div>
+        </div>
+
+        <!-- Analytics Page -->
+        <div id="analytics" class="page">
+            <h1>Analytics & Reports</h1>
+            
+            <div class="analytics-grid">
+                <div class="chart-card">
+                    <h3>Collection Trend</h3>
+                    <div class="chart-placeholder">
+                        <i class="fas fa-chart-line"></i>
+                        Chart will display here
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3>Waste Type Distribution</h3>
+                    <div class="chart-placeholder">
+                        <i class="fas fa-pie-chart"></i>
+                        Chart will display here
+                    </div>
+                </div>
+            </div>
+
+            <h2>Monthly Summary</h2>
+            <div id="analyticsTable" class="data-table">
+                <p class="no-data">No data available</p>
+            </div>
+        </div>
+
+        <!-- Customers Page -->
+        <div id="customers" class="page">
+            <h1>Customers</h1>
+            
+            <div class="filter-bar">
+                <input type="text" id="customerSearch" placeholder="Search customer...">
+            </div>
+
+            <div id="customersList" class="data-table">
+                <p class="no-data">Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for updating pickup status -->
+    <div id="updateModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Update Pickup Status</h2>
+            <form id="updateForm">
+                <div class="form-group">
+                    <label>New Status</label>
+                    <select id="newStatus" required>
+                        <option value="">Select status...</option>
+                        <option value="scheduled">Scheduled</option>
+                        <option value="in_transit">In Transit</option>
+                        <option value="collected">Collected</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Actual Quantity (kg)</label>
+                    <input type="number" id="actualQuantity" placeholder="Enter actual quantity" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>Notes</label>
+                    <textarea id="updateNotes" placeholder="Any notes..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

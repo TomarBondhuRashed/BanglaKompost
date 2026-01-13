@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - BanglaKompost</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+
+            <div class="auth-header">
+                <i class="fas fa-seedling"></i>
+                <h1>BanglaKompost</h1>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="customer">
+                    <i class="fas fa-user"></i> Customer
+                </button>
+                <button class="tab-btn" data-tab="admin">
+                    <i class="fas fa-lock"></i> Admin
+                </button>
+            </div>
+
+            <!-- Customer Login -->
+            <div id="customer" class="tab-content active">
+                <h2>Customer Login</h2>
+                <form id="customerLoginForm">
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password"><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                        <small><a href="#forgot">Forgot password?</a></small>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </form>
+                <p class="switch-text">
+                    Don't have an account? <a href="signup.html?type=customer">Sign up here</a>
+                </p>
+            </div>
+
+            <!-- Admin Login -->
+            <div id="admin" class="tab-content">
+                <h2>Admin Login</h2>
+                <form id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="admin-email"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="admin-email" name="email" placeholder="admin@banglakompost.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-password"><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" id="admin-password" name="password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-sign-in-alt"></i> Admin Login
+                    </button>
+                </form>
+                <p class="switch-text">
+                    Not an admin? <a href="login.html">Customer login</a>
+                </p>
+            </div>
+
+            <div class="auth-footer">
+                <p>🌱 Turning waste into wealth for Bangladesh</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const tab = e.target.closest('.tab-btn').dataset.tab;
+                document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+                document.querySelectorAll('.tab-btn').forEach(tb => tb.classList.remove('active'));
+                document.getElementById(tab).classList.add('active');
+                e.target.closest('.tab-btn').classList.add('active');
+            });
+        });
+
+        // Customer login
+        document.getElementById('customerLoginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await handleLogin('customer');
+        });
+
+        // Admin login
+        document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await handleLogin('admin');
+        });
+
+        async function handleLogin(type) {
+            const form = type === 'customer' ? document.getElementById('customerLoginForm') : document.getElementById('adminLoginForm');
+            const email = form.querySelector('input[name="email"]').value;
+            const password = form.querySelector('input[name="password"]').value;
+
+            try {
+                const endpoint = type === 'customer' ? `${API_URL}/auth/customer/login` : `${API_URL}/auth/admin/login`;
+                
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Store token
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('userRole', data.user.role);
+                    localStorage.setItem('userId', data.user.id);
+                    localStorage.setItem('userName', data.user.firstName);
+
+                    showNotification('Login successful! Redirecting...', 'success');
+
+                    // Redirect based on role
+                    setTimeout(() => {
+                        if (type === 'customer') {
+                            window.location.href = '../dashboard/customer/index.html';
+                        } else {
+                            window.location.href = '../dashboard/admin/index.html';
+                        }
+                    }, 1500);
+                } else {
+                    showNotification(data.message || 'Login failed', 'error');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showNotification('Connection error. Please try again.', 'error');
+            }
+        }
+
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification notification-${type} show`;
+            setTimeout(() => notification.classList.remove('show'), 3000);
+        }
+    </script>
+</body>
+</html>

@@ -6,6 +6,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     // ============================================
+    // Utility Functions
+    // ============================================
+    window.scrollToForm = function() {
+        const form = document.getElementById('pickup');
+        form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+    // ============================================
     // Navigation Toggle (Mobile)
     // ============================================
     const navToggle = document.getElementById('nav-toggle');

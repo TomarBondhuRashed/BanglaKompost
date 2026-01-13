@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - BanglaKompost</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+
+            <div class="auth-header">
+                <i class="fas fa-seedling"></i>
+                <h1>BanglaKompost</h1>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="customer">
+                    <i class="fas fa-user"></i> Customer
+                </button>
+            </div>
+
+            <!-- Customer Sign Up -->
+            <div id="customer" class="tab-content active">
+                <h2>Create Customer Account</h2>
+                <form id="customerSignupForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName"><i class="fas fa-user"></i> First Name</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName"><i class="fas fa-user"></i> Last Name</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Doe">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone"><i class="fas fa-phone"></i> Phone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="01700000000" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address"><i class="fas fa-map-marker-alt"></i> Address</label>
+                        <textarea id="address" name="address" placeholder="House, Road, Area" required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city"><i class="fas fa-city"></i> City</label>
+                            <select id="city" name="city" required>
+                                <option value="">Select City</option>
+                                <option value="Dhaka">Dhaka</option>
+                                <option value="Chittagong">Chittagong</option>
+                                <option value="Sylhet">Sylhet</option>
+                                <option value="Khulna">Khulna</option>
+                                <option value="Rajshahi">Rajshahi</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password"><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                        <small>At least 6 characters</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" name="terms" required>
+                            I agree to the Terms & Conditions
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-user-plus"></i> Create Account
+                    </button>
+                </form>
+
+                <p class="switch-text">
+                    Already have an account? <a href="login.html">Login here</a>
+                </p>
+            </div>
+
+            <div class="auth-footer">
+                <p>🌱 Join our waste-to-wealth movement</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+
+        document.getElementById('customerSignupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await handleSignup();
+        });
+
+        async function handleSignup() {
+            const form = document.getElementById('customerSignupForm');
+            const data = {
+                firstName: form.querySelector('#firstName').value,
+                lastName: form.querySelector('#lastName').value,
+                email: form.querySelector('#email').value,
+                phone: form.querySelector('#phone').value,
+                address: form.querySelector('#address').value,
+                city: form.querySelector('#city').value,
+                password: form.querySelector('#password').value
+            };
+
+            // Validation
+            if (data.password.length < 6) {
+                showNotification('Password must be at least 6 characters', 'error');
+                return;
+            }
+
+            if (!/^01[3-9]\d{8}$/.test(data.phone.replace(/\s/g, ''))) {
+                showNotification('Invalid Bangladesh phone number', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/auth/customer/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Store token
+                    localStorage.setItem('token', result.token);
+                    localStorage.setItem('userRole', 'customer');
+                    localStorage.setItem('userId', result.user.id);
+                    localStorage.setItem('userName', result.user.firstName);
+
+                    showNotification('Account created successfully! Redirecting...', 'success');
+
+                    setTimeout(() => {
+                        window.location.href = '../dashboard/customer/index.html';
+                    }, 1500);
+                } else {
+                    showNotification(result.message || 'Registration failed', 'error');
+                }
+            } catch (error) {
+                console.error('Signup error:', error);
+                showNotification('Connection error. Please try again.', 'error');
+            }
+        }
+
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification notification-${type} show`;
+            setTimeout(() => notification.classList.remove('show'), 3000);
+        }
+    </script>
+</body>
+</html>
