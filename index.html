@@ -22,7 +22,7 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">
+            <a href="#hero" class="logo">
                 <i class="fas fa-seedling"></i>
                 <span>BanglaKompost</span>
             </a>
@@ -42,8 +42,9 @@
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
+        <div class="hero-bg-image" style="background-image: url('images/hero-bg.jpg.jpg'); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 0; filter: brightness(0.6) contrast(1.1);"></div>
         <div class="hero-overlay"></div>
-        <div class="container hero-content">
+        <div class="container hero-content" style="position: relative; z-index: 1;">
             <h1 class="hero-title">Turning Market Waste into <span class="highlight">Soil Wealth</span></h1>
             <p class="hero-subtitle">We collect organic waste from your doorstep and transform it into valuable compost fertilizer — creating cleaner cities and healthier soil for Bangladesh.</p>
             <div class="hero-buttons">
@@ -53,16 +54,19 @@
             </div>
             <div class="hero-stats">
                 <div class="stat">
-                    <span class="stat-number">30-45</span>
-                    <span class="stat-label">Days to Compost</span>
+                    <span class="stat-number">30–45</span>
+                    <span class="stat-label">Days</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.3rem; display: block;">From waste to compost</span>
                 </div>
                 <div class="stat">
                     <span class="stat-number">100%</span>
-                    <span class="stat-label">Eco-Friendly</span>
+                    <span class="stat-label">Organic</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.3rem; display: block;">No chemicals, soil-safe</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-number">1-Click</span>
-                    <span class="stat-label">Pickup Request</span>
+                    <span class="stat-number" style="color: #FFC107; font-size: 2.5rem; font-weight: 700;">৳</span>
+                    <span class="stat-label">Waste is Money</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.3rem; display: block;">Make easy money by selling your wastes</span>
                 </div>
             </div>
         </div>
@@ -78,28 +82,48 @@
                 <span class="section-tag">The Problem</span>
                 <h2>Dhaka is Drowning in Waste</h2>
             </div>
-            <div class="problem-content">
-                <div class="problem-image">
-                    <div class="image-placeholder">
-                        <i class="fas fa-trash-alt"></i>
-                        <span>Waste Dumping Site</span>
-                    </div>
+            <div class="problem-content" style="display: flex; gap: 3rem; align-items: flex-start; flex-wrap: wrap;">
+                <!-- Left Column: Large Image (60%) -->
+                <div class="problem-image" style="flex: 1.5 1 55%; min-width: 300px;">
+                    <img src="images/waste-dumping.jpg.jpg" alt="Waste Dumping Site in Dhaka" style="width: 100%; height: auto; border-radius: 16px; box-shadow: 0 12px 32px rgba(0,0,0,0.18); display: block;" />
                 </div>
-                <div class="problem-text">
-                    <div class="problem-card">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <h3>5,000+ Tons Daily</h3>
-                        <p>Dhaka generates over 5,000 tons of waste daily, with most ending up in open dumps like Mugda.</p>
+                <!-- Right Column: Cards (40%) -->
+                <div class="problem-text" style="flex: 1 1 40%; min-width: 280px; display: flex; flex-direction: column; gap: 1.5rem; justify-content: center;">
+                    <!-- Card 1 -->
+                    <div class="problem-card" style="background: #ffffff; border-left: 4px solid #FF9800; padding: 1.5rem 1.5rem 1.5rem 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+                        <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                            <div style="font-size: 1.8rem; color: #FF9800; min-width: 40px; text-align: center;">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div>
+                                <h3 style="margin: 0 0 0.5rem 0; font-size: 1.1rem; color: #212121;">5,000+ Tons Daily</h3>
+                                <p style="margin: 0; color: #666; font-size: 0.95rem; line-height: 1.5;">Dhaka generates over 5,000 tons of waste daily, with most ending up in open dumps like Mugda.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="problem-card">
-                        <i class="fas fa-smog"></i>
-                        <h3>Environmental Hazard</h3>
-                        <p>Rotting organic waste releases methane, pollutes groundwater, and creates breeding grounds for disease.</p>
+                    <!-- Card 2 -->
+                    <div class="problem-card" style="background: #ffffff; border-left: 4px solid #9C27B0; padding: 1.5rem 1.5rem 1.5rem 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+                        <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                            <div style="font-size: 1.8rem; color: #9C27B0; min-width: 40px; text-align: center;">
+                                <i class="fas fa-smog"></i>
+                            </div>
+                            <div>
+                                <h3 style="margin: 0 0 0.5rem 0; font-size: 1.1rem; color: #212121;">Environmental Hazard</h3>
+                                <p style="margin: 0; color: #666; font-size: 0.95rem; line-height: 1.5;">Rotting organic waste releases methane, pollutes groundwater, and creates breeding grounds for disease.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="problem-card">
-                        <i class="fas fa-leaf"></i>
-                        <h3>Wasted Resource</h3>
-                        <p>60% of this waste is organic and could become valuable compost instead of pollution.</p>
+                    <!-- Card 3 -->
+                    <div class="problem-card" style="background: #ffffff; border-left: 4px solid #4CAF50; padding: 1.5rem 1.5rem 1.5rem 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+                        <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                            <div style="font-size: 1.8rem; color: #4CAF50; min-width: 40px; text-align: center;">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div>
+                                <h3 style="margin: 0 0 0.5rem 0; font-size: 1.1rem; color: #212121;">Wasted Resource</h3>
+                                <p style="margin: 0; color: #666; font-size: 0.95rem; line-height: 1.5;">60% of this waste is organic and could become valuable compost instead of pollution.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -262,42 +286,89 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">About Us</span>
-                <h2>Our Mission & Vision</h2>
+                <span class="section-tag">Our Pricing</span>
+                <h2>We Buy Your Organic Waste</h2>
+                <p class="section-description">Get paid for your organic waste while contributing to a cleaner environment</p>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p class="mission-statement">
-                        <strong>BanglaKompost</strong> is on a mission to transform Bangladesh's organic waste problem into an opportunity for sustainable agriculture and cleaner cities.
-                    </p>
-                    <p>
-                        We believe that every piece of organic waste has value. By collecting decomposable materials from households, markets, and restaurants, we create high-quality compost that enriches soil without harming the environment.
-                    </p>
-                    <p>
-                        Our vision is to reduce waste in dumping sites like Mugda, provide affordable organic fertilizer to farmers, and create green employment opportunities across Bangladesh.
-                    </p>
-                    <div class="trust-badges">
-                        <div class="badge">
-                            <i class="fas fa-university"></i>
-                            <span>UITS Student Initiative</span>
-                        </div>
-                        <div class="badge">
-                            <i class="fas fa-trophy"></i>
-                            <span>Hult Prize 2026</span>
-                        </div>
-                        <div class="badge">
-                            <i class="fas fa-map-marked-alt"></i>
-                            <span>Pilot Project - Dhaka</span>
-                        </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-icon">
+                        <i class="fas fa-leaf"></i>
                     </div>
+                    <h3>Sorted Organic Waste</h3>
+                    <div class="pricing-amount">
+                        <span class="price">3</span>
+                        <span class="currency">৳/kg</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Clean & sorted waste</li>
+                        <li><i class="fas fa-check"></i> Kitchen & garden waste</li>
+                        <li><i class="fas fa-check"></i> Premium rates</li>
+                        <li><i class="fas fa-check"></i> Quick payment</li>
+                    </ul>
                 </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Popular</div>
+                    <div class="pricing-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <h3>Unsorted Organic Waste</h3>
+                    <div class="pricing-amount">
+                        <span class="price">1</span>
+                        <span class="currency">৳/kg</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Mixed organic waste</li>
+                        <li><i class="fas fa-check"></i> Market & restaurant waste</li>
+                        <li><i class="fas fa-check"></i> Bulk quantities welcome</li>
+                        <li><i class="fas fa-check"></i> Free collection available</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pricing-note">
+                <i class="fas fa-info-circle"></i>
+                <p><strong>How it works:</strong> Contact us for pickup, we collect and weigh your waste, and payment is made on the spot. Minimum 10kg for collection service.</p>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="tel:+8801XXXXXXXXX" class="btn btn-primary">
+                    <i class="fas fa-phone"></i> Call for Pickup
+                </a>
             </div>
         </div>
     </section>
+
+    <!-- About Section -->
+     <section class="about" id="about">
+         <div class="container">
+             <div class="section-header">
+                 <span class="section-tag">About Us</span>
+                 <h2>Our Mission & Vision</h2>
+                 <p class="section-description" style="margin-top: 0.5rem;">Turning organic waste into sustainable growth for Bangladesh</p>
+             </div>
+             <div class="about-content" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: flex-start; margin-bottom: 2rem;">
+                 <!-- Mission Column -->
+                 <div class="about-mission" style="flex: 1 1 320px; max-width: 420px; min-width: 280px; background: #F5F5F5; border-radius: 16px; padding: 2rem 1.5rem; box-shadow: 0 2px 8px rgba(46,125,50,0.06);">
+                     <h3 style="display: flex; align-items: center; gap: 0.5rem; font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem;"><span style="font-size:1.5rem;">🌱</span> Our Mission</h3>
+                     <p style="margin-bottom: 1rem;">BanglaKompost transforms Bangladesh’s organic waste into high-quality compost, reducing pollution while supporting sustainable agriculture and cleaner urban communities.</p>
+                     <ul style="margin-left: 1.2rem; margin-bottom: 0;">
+                         <li>• Collect organic waste locally</li>
+                         <li>• Convert waste into safe fertilizer</li>
+                         <li>• Support farmers & urban cleanliness</li>
+                     </ul>
+                 </div>
+                 <!-- Vision Column -->
+                 <div class="about-vision" style="flex: 1 1 320px; max-width: 420px; min-width: 280px; background: #F5F5F5; border-radius: 16px; padding: 2rem 1.5rem; box-shadow: 0 2px 8px rgba(46,125,50,0.06);">
+                     <h3 style="display: flex; align-items: center; gap: 0.5rem; font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem;"><span style="font-size:1.5rem;">👁️</span> Our Vision</h3>
+                     <p style="margin-bottom: 0.5rem;">We envision a Bangladesh with cleaner cities, healthier soil, reduced landfill waste, and green employment opportunities driven by circular waste solutions.</p>
+                     <div style="margin-top: 0.5rem; font-weight: 600; color: #2E7D32; display: flex; align-items: center; gap: 0.5rem;"><span style="font-size:1.2rem;">🌍</span> Circular economy for a cleaner Bangladesh</div>
+                 </div>
+             </div>
+         </div>
+     </section>
 
     <!-- Call to Action -->
     <section class="cta">
@@ -305,8 +376,11 @@
             <h2>Ready to Make a Difference?</h2>
             <p>Join the BanglaKompost movement. Turn your waste into wealth for Bangladesh.</p>
             <div class="cta-buttons">
-                <a href="tel:+8801XXXXXXXXX" class="btn btn-secondary">
+                <a href="tel:+8801XXXXXXXXX" class="btn btn-primary" style="display: inline-block;">
                     <i class="fas fa-phone"></i> Call Us Now
+                </a>
+                <a href="#pricing" class="btn btn-primary" style="display: inline-block;">
+                    <i class="fas fa-tag"></i> View Pricing
                 </a>
             </div>
         </div>
@@ -317,7 +391,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <a href="#" class="logo">
+                    <a href="#hero" class="logo">
                         <i class="fas fa-seedling"></i>
                         <span>BanglaKompost</span>
                     </a>
@@ -345,11 +419,11 @@
                     <ul>
                         <li>
                             <i class="fas fa-phone"></i>
-                            <span>+880 1XXX-XXXXXX</span>
+                            <span>+880 1767781553</span>
                         </li>
                         <li>
                             <i class="fas fa-envelope"></i>
-                            <span>info@banglakompost.com</span>
+                            <span>banglakompost@gmail.com</span>
                         </li>
                         <li>
                             <i class="fas fa-map-marker-alt"></i>
@@ -360,7 +434,6 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 BanglaKompost. All rights reserved.</p>
-                <p>A UITS Student Initiative for Hult Prize 2026</p>
             </div>
         </div>
     </footer>

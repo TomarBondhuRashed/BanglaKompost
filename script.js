@@ -171,7 +171,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 const statNumbers = entry.target.querySelectorAll('.stat-number');
                 statNumbers.forEach(stat => {
-                    const text = stat.textContent;
+                    const text = stat.textContent.trim();
+                    // Skip animation for non-numeric stats (like "30–45", "100%", "৳")
+                    if (text.includes('–') || text.includes('%') || text.includes('৳')) {
+                        return; // Don't animate these
+                    }
                     const number = parseInt(text.replace(/\D/g, ''));
                     if (!isNaN(number) && number > 0) {
                         // Keep the suffix if any
