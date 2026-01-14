@@ -36,8 +36,6 @@
                 <li><a href="#pricing" class="nav-link">Pricing</a></li>
                 <li><a href="#impact" class="nav-link">Impact</a></li>
                 <li><a href="#about" class="nav-link">About Us</a></li>
-                <li><a href="auth/login.html" class="nav-link">Login</a></li>
-                <li><a href="#pickup" class="nav-link btn-nav">Request Pickup</a></li>
             </ul>
         </div>
     </nav>
@@ -49,9 +47,6 @@
             <h1 class="hero-title">Turning Market Waste into <span class="highlight">Soil Wealth</span></h1>
             <p class="hero-subtitle">We collect organic waste from your doorstep and transform it into valuable compost fertilizer — creating cleaner cities and healthier soil for Bangladesh.</p>
             <div class="hero-buttons">
-                <a href="#pickup" class="btn btn-primary">
-                    <i class="fas fa-truck"></i> Request Waste Pickup
-                </a>
                 <a href="#how-it-works" class="btn btn-secondary">
                     <i class="fas fa-play-circle"></i> See How It Works
                 </a>
@@ -267,86 +262,12 @@
         </div>
     </section>
 
-    <!-- Pickup Request Form Section -->
-    <section class="pickup" id="pickup">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Get Started</span>
-                <h2>Request Waste Pickup</h2>
-                <p class="section-description">Fill out the form below and our team will contact you within 24 hours to schedule pickup.</p>
-            </div>
-            <div class="form-container">
-                <form id="pickup-form" class="pickup-form">
-                    <div class="form-group">
-                        <label for="name">
-                            <i class="fas fa-user"></i> Full Name *
-                        </label>
-                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">
-                            <i class="fas fa-phone"></i> Phone Number *
-                        </label>
-                        <input type="tel" id="phone" name="phone" placeholder="01XXXXXXXXX" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">
-                            <i class="fas fa-map-marker-alt"></i> Address *
-                        </label>
-                        <textarea id="address" name="address" placeholder="Enter your full address (House, Road, Area, City)" required></textarea>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="waste-type">
-                                <i class="fas fa-trash"></i> Type of Waste *
-                            </label>
-                            <select id="waste-type" name="waste-type" required>
-                                <option value="">Select waste type</option>
-                                <option value="kitchen">Kitchen/Food Waste</option>
-                                <option value="market">Market Waste</option>
-                                <option value="garden">Garden/Yard Waste</option>
-                                <option value="restaurant">Restaurant Waste</option>
-                                <option value="mixed">Mixed Organic Waste</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="quantity">
-                                <i class="fas fa-weight"></i> Estimated Quantity
-                            </label>
-                            <select id="quantity" name="quantity">
-                                <option value="">Select quantity</option>
-                                <option value="small">Small (1-5 kg)</option>
-                                <option value="medium">Medium (5-20 kg)</option>
-                                <option value="large">Large (20-50 kg)</option>
-                                <option value="bulk">Bulk (50+ kg)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">
-                            <i class="fas fa-comment"></i> Additional Notes
-                        </label>
-                        <textarea id="message" name="message" placeholder="Any special instructions or preferred pickup time..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-submit">
-                        <i class="fas fa-paper-plane"></i> Submit Request
-                    </button>
-                </form>
-                <div class="form-success" id="form-success">
-                    <i class="fas fa-check-circle"></i>
-                    <h3>Request Submitted!</h3>
-                    <p>Thank you for choosing BanglaKompost. We'll contact you within 24 hours.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">About Us</span>
-                <h2>Our Mission</h2>
+                <h2>Our Mission & Vision</h2>
             </div>
             <div class="about-content">
                 <div class="about-text">
@@ -374,39 +295,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="team-section">
-                    <h3>Meet the Team</h3>
-                    <div class="team-grid">
-                        <div class="team-member">
-                            <div class="member-avatar">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <h4>Team Member 1</h4>
-                            <p>Founder & CEO</p>
-                        </div>
-                        <div class="team-member">
-                            <div class="member-avatar">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <h4>Team Member 2</h4>
-                            <p>Operations Lead</p>
-                        </div>
-                        <div class="team-member">
-                            <div class="member-avatar">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <h4>Team Member 3</h4>
-                            <p>Tech Lead</p>
-                        </div>
-                        <div class="team-member">
-                            <div class="member-avatar">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <h4>Team Member 4</h4>
-                            <p>Marketing Lead</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -417,9 +305,6 @@
             <h2>Ready to Make a Difference?</h2>
             <p>Join the BanglaKompost movement. Turn your waste into wealth for Bangladesh.</p>
             <div class="cta-buttons">
-                <a href="#pickup" class="btn btn-primary">
-                    <i class="fas fa-truck"></i> Request Pickup
-                </a>
                 <a href="tel:+8801XXXXXXXXX" class="btn btn-secondary">
                     <i class="fas fa-phone"></i> Call Us Now
                 </a>
