@@ -22,22 +22,8 @@ BanglaKompost is an innovative waste management solution that collects organic w
 ## 🚀 Quick Start
 
 ### Option 1: Open Directly
+https://banglakompost.netlify.app/
 
-Simply open `index.html` in your web browser.
-
-### Option 2: Use Live Server (Recommended)
-
-1. Install [VS Code Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
-2. Right-click on `index.html` → "Open with Live Server"
-3. The website will open in your browser with hot-reload
-
-### Option 3: Deploy to Netlify (Free)
-
-1. Push this folder to GitHub
-2. Go to [Netlify](https://netlify.com)
-3. Click "New site from Git"
-4. Select your repository
-5. Click "Deploy"
 
 ---
 
