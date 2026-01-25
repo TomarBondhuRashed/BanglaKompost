@@ -21,9 +21,7 @@ BanglaKompost is an innovative waste management solution that collects organic w
 
 ## 🚀 Quick Start
 
-### Option 1: Open Directly
-https://banglakompost.netlify.app/
-
+### Open Directly "https://banglakompost.netlify.app/"
 
 ---
 
