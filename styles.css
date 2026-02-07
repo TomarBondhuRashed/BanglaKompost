@@ -529,7 +529,8 @@ input, textarea, select {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-lg);
-    align-items: center;
+    align-items: stretch;
+    justify-content: center;
 }
 
 .step-card {
@@ -541,6 +542,7 @@ input, textarea, select {
     width: 100%;
     max-width: 350px;
     transition: var(--transition-normal);
+    flex: 1 1 auto;
 }
 
 .step-card:hover {
@@ -591,6 +593,7 @@ input, textarea, select {
     color: var(--primary-green);
     font-size: 1.5rem;
     transform: rotate(90deg);
+    display: none;
 }
 
 /* ============================================
@@ -1351,6 +1354,12 @@ input, textarea, select {
         flex-direction: row;
         flex-wrap: wrap;
         gap: var(--spacing-md);
+        justify-content: center;
+    }
+    
+    .step-card {
+        flex: 1 1 calc(50% - var(--spacing-md));
+        max-width: 300px;
     }
     
     .step-arrow {
@@ -1472,17 +1481,22 @@ input, textarea, select {
     .solution-steps {
         flex-direction: row;
         justify-content: center;
+        align-items: stretch;
         gap: var(--spacing-md);
+        flex-wrap: nowrap;
     }
     
     .step-arrow {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         transform: rotate(0);
-        align-self: center;
+        flex-shrink: 0;
     }
     
     .step-card {
         max-width: 280px;
+        flex: 1 1 280px;
     }
     
     /* Impact */
