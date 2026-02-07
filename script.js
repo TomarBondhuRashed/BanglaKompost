@@ -3,6 +3,29 @@
    Interactions & Form Handling
    ============================================ */
 
+// Detect if device is touch-enabled
+const isTouchDevice = () => {
+    return (('ontouchstart' in window) ||
+            (navigator.maxTouchPoints > 0) ||
+            (navigator.msMaxTouchPoints > 0));
+};
+
+// Debounce function for resize events
+const debounce = (func, delay) => {
+    let timeoutId;
+    return function(...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func(...args), delay);
+    };
+};
+
+// Add touch class to body if touch device
+if (isTouchDevice()) {
+    document.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.add('is-touch');
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     
     // ============================================
@@ -16,6 +39,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Toggle mobile menu
     navToggle.addEventListener('click', function() {
         navMenu.classList.toggle('active');
+        
+        // Prevent body scroll when menu is open
+        if (navMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
         
         // Toggle hamburger icon
         const icon = navToggle.querySelector('i');
@@ -32,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             navMenu.classList.remove('active');
+            document.body.style.overflow = '';
             const icon = navToggle.querySelector('i');
             icon.classList.remove('fa-times');
             icon.classList.add('fa-bars');
@@ -42,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(e) {
         if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
             navMenu.classList.remove('active');
+            document.body.style.overflow = '';
             const icon = navToggle.querySelector('i');
             icon.classList.remove('fa-times');
             icon.classList.add('fa-bars');
@@ -100,6 +132,18 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    // ============================================
+    // Fix 100vh on Mobile Devices
+    // ============================================
+    const setViewportHeight = () => {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+    
+    setViewportHeight();
+    window.addEventListener('resize', debounce(setViewportHeight, 300));
+    window.addEventListener('orientationchange', setViewportHeight);
     
     // ============================================
     // Intersection Observer for Animations

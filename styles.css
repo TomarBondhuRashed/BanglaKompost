@@ -63,6 +63,9 @@
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
     --transition-slow: 0.5s ease;
+    
+    /* Viewport helper for mobile */
+    --vh: 1vh;
 }
 
 /* ============================================
@@ -136,13 +139,16 @@ input, textarea, select {
     align-items: center;
     justify-content: center;
     gap: var(--spacing-xs);
-    padding: 0.875rem 1.75rem;
+    padding: 1rem 1.5rem;
     font-family: var(--font-heading);
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.95rem;
     border-radius: var(--radius-md);
     transition: var(--transition-normal);
     cursor: pointer;
+    min-height: 44px;
+    width: 100%;
+    max-width: 100%;
 }
 
 .btn-primary {
@@ -189,10 +195,11 @@ input, textarea, select {
 
 .section-header h2 {
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 700;
     color: var(--black);
     margin-bottom: var(--spacing-sm);
+    padding: 0 var(--spacing-sm);
 }
 
 .section-description {
@@ -354,7 +361,7 @@ input, textarea, select {
 
 .hero-title {
     font-family: var(--font-heading);
-    font-size: 2.25rem;
+    font-size: 1.75rem;
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: var(--spacing-md);
@@ -366,12 +373,13 @@ input, textarea, select {
 }
 
 .hero-subtitle {
-    font-size: 1.125rem;
+    font-size: 1rem;
     line-height: 1.7;
     max-width: 600px;
     margin: 0 auto var(--spacing-lg);
     opacity: 0.95;
     animation: fadeInUp 0.8s ease 0.2s backwards;
+    padding: 0 var(--spacing-sm);
 }
 
 .hero-buttons {
@@ -384,17 +392,21 @@ input, textarea, select {
 
 .hero-stats {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: var(--spacing-sm);
     animation: fadeInUp 0.8s ease 0.6s backwards;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .stat {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
-    padding: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-sm);
     border-radius: var(--radius-lg);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    min-height: auto;
 }
 
 .stat-number {
@@ -429,12 +441,16 @@ input, textarea, select {
 }
 
 .problem-content {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: var(--spacing-lg);
+    align-items: center;
 }
 
 .problem-image {
     order: -1;
+    width: 100%;
+    max-width: 500px;
 }
 
 .image-placeholder {
@@ -465,6 +481,8 @@ input, textarea, select {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
+    width: 100%;
+    max-width: 500px;
 }
 
 .problem-card {
@@ -938,8 +956,17 @@ input, textarea, select {
 }
 
 .about-content {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: var(--spacing-xl);
+}
+
+.about-mission,
+.about-vision {
+    background: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
 }
 
 .about-text {
@@ -1077,6 +1104,9 @@ input, textarea, select {
     gap: var(--spacing-sm);
     justify-content: center;
     align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .cta .btn-primary {
@@ -1103,7 +1133,8 @@ input, textarea, select {
 }
 
 .footer-content {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: var(--spacing-xl);
     margin-bottom: var(--spacing-xl);
 }
@@ -1200,10 +1231,10 @@ input, textarea, select {
    ============================================ */
 .back-to-top {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 50px;
-    height: 50px;
+    bottom: 1rem;
+    right: 1rem;
+    width: 48px;
+    height: 48px;
     background: var(--primary-green);
     color: var(--white);
     border-radius: var(--radius-full);
@@ -1217,6 +1248,7 @@ input, textarea, select {
     transform: translateY(20px);
     transition: var(--transition-normal);
     z-index: 999;
+    min-height: 48px;
 }
 
 .back-to-top.show {
@@ -1253,6 +1285,95 @@ input, textarea, select {
     }
     60% {
         transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+/* ============================================
+   Small Mobile Styles (480px and up)
+   ============================================ */
+@media (min-width: 480px) {
+    html {
+        font-size: 16px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.9rem;
+    }
+    
+    .btn {
+        width: auto;
+        padding: 0.875rem 1.5rem;
+    }
+    
+    .hero-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .stat:nth-child(3) {
+        grid-column: 1 / -1;
+    }
+}
+
+/* ============================================
+   Medium Mobile Styles (600px and up)
+   ============================================ */
+@media (min-width: 600px) {
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+    
+    .hero-title {
+        font-size: 2.25rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2.25rem;
+    }
+    
+    .hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .stat:nth-child(3) {
+        grid-column: auto;
+    }
+    
+    .problem-content {
+        flex-direction: column-reverse;
+    }
+    
+    .solution-steps {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--spacing-md);
+    }
+    
+    .step-arrow {
+        display: none;
+    }
+    
+    .impact-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .cta-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--spacing-md);
+    }
+    
+    .cta-buttons .btn {
+        flex: 1;
+        min-width: 200px;
     }
 }
 
@@ -1310,6 +1431,10 @@ input, textarea, select {
     }
     
     /* Hero */
+    .hero {
+        padding: 8rem var(--spacing-sm) var(--spacing-xxl);
+    }
+    
     .hero-title {
         font-size: 3rem;
     }
@@ -1317,6 +1442,10 @@ input, textarea, select {
     .hero-buttons {
         flex-direction: row;
         justify-content: center;
+    }
+    
+    .btn {
+        width: auto;
     }
     
     .stat-number {
@@ -1329,8 +1458,10 @@ input, textarea, select {
     
     /* Problem */
     .problem-content {
+        display: grid;
         grid-template-columns: 1fr 1fr;
         align-items: center;
+        gap: var(--spacing-xl);
     }
     
     .problem-image {
@@ -1345,6 +1476,7 @@ input, textarea, select {
     }
     
     .step-arrow {
+        display: block;
         transform: rotate(0);
         align-self: center;
     }
@@ -1356,6 +1488,13 @@ input, textarea, select {
     /* Impact */
     .impact-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* About */
+    .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-xl);
     }
     
     /* Pricing */
@@ -1371,10 +1510,18 @@ input, textarea, select {
     /* CTA */
     .cta-buttons {
         flex-direction: row;
+        gap: var(--spacing-lg);
+        max-width: 100%;
+    }
+    
+    .cta-buttons .btn {
+        min-width: auto;
+        flex: 0 1 auto;
     }
     
     /* Footer */
     .footer-content {
+        display: grid;
         grid-template-columns: 2fr 1fr 1fr;
     }
 }
@@ -1498,4 +1645,44 @@ select:focus {
 
 .skip-link:focus {
     top: 0;
+}
+
+/* ============================================
+   Touch Device Optimizations
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+    /* Disable hover effects on touch devices */
+    .btn:hover,
+    .problem-card:hover,
+    .step-card:hover,
+    .impact-card:hover,
+    .pricing-card:hover,
+    .team-member:hover,
+    .social-links a:hover {
+        transform: none;
+    }
+    
+    /* Increase touch targets to 44x44px minimum */
+    a, button {
+        min-height: 44px;
+        min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* ============================================
+   Improved Mobile Image Handling
+   ============================================ */
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+}
+
+picture {
+    display: block;
 }
